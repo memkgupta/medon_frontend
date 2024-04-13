@@ -10,6 +10,7 @@ import { useCookies } from 'react-cookie';
 import useAuth from '@/context/useAuth';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
+import { unsubscribe } from 'diagnostics_channel';
 const page = ({params}:{params:{id:string}}) => {
 const [call,setCall] = useState<Call>();
 const {user,authStatus} = useAuth();
@@ -42,17 +43,23 @@ const [loading,setLoading] = useState(true);
 
   useEffect(()=>{
 if(call){
-    call.on('call.ended',(event:StreamVideoEvent)=>{
+   const unsubscribe= call.on('call.ended',(event:StreamVideoEvent)=>{
 if(event.type==='call.ended'){
-    axios.put(`${BASE_URL}/booking/end/${params.id}`,{},{headers:{Authorization:`Bearer ${cookies.token}`}}).then((res)=>{
-router.replace(`/meeting/end?id=${params.id}`)
-    })
-    .catch((error:any)=>{
-        toast.error(error.message);
-    })
+     call.endCall().then(()=>{
+        axios.put(`${BASE_URL}/booking/end/${params.id}`,{},{headers:{Authorization:`Bearer ${cookies.token}`}}).then((res)=>{
+            router.replace(`/meeting/end?id=${params.id}`)
+                })
+                .catch((error:any)=>{
+                    toast.error(error.message);
+                })
+     })
+    
 }
     })
+    unsubscribe();
 }
+
+
   },[call])
 
   return (
