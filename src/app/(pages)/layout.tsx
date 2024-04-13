@@ -44,7 +44,9 @@ export default function RootLayout({
         
    <AuthProvider value={{user:user,authStatus:authStatus,setAuthStatus:setAuthStatus,setUser:setUser}}>
             <Navbar/>
+       <div className="min-h-screen">
        {children}
+       </div>
        <Footer/>
     </AuthProvider>
        
