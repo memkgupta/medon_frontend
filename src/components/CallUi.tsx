@@ -1,15 +1,22 @@
 "use client"
 import { CallControls, CallingState, SpeakerLayout, StreamTheme, useCall, useCallStateHooks } from '@stream-io/video-react-sdk'
-import React from 'react'
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react'
 
 
 const CallUi = () => {
 
     const { useCallCallingState, useParticipantCount,    useLocalParticipant,
         useRemoteParticipants, } = useCallStateHooks();
+        const router = useRouter()
   const callingState = useCallCallingState();
   const localParticipant = useLocalParticipant();
   const remoteParticipants = useRemoteParticipants();
+ useEffect(()=>{
+    if(callingState===CallingState.LEFT){
+        router.push(`/meeting/end`)
+    }
+ },[callingState])
   return (
   
   <>
@@ -17,6 +24,7 @@ const CallUi = () => {
 (callingState!== CallingState.JOINED) ? 
 (
     <div>Loading Call ...</div>
+
 )
 :
 (
