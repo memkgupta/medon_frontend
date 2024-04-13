@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main>
-      <Navbar/>
+     
       <div className="mt-4 p-4 flex justify-center gap-5">
       <QuickCard title="Book Medicines" imageUrl="./delivery.jpg" link="/medicines"/>
       </div>

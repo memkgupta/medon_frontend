@@ -34,7 +34,8 @@ export interface registerDoctorProps {
     licenseNumber:string,
     contactInfo:contactInfo,
     consultationFee:number,
-    operationalWeek:operationalWeek
+    operationalWeek:operationalWeek,
+    speciality:string
 }
 export interface doctorProps{
     _id:string,
@@ -43,5 +44,9 @@ export interface doctorProps{
     gender:string,
     operationalWeek:operationalWeek,
     image:string,
-    ratings:number
+    ratings:number,
+    contactInfo:contactInfo,
+    consultationFee:number,
+    licenseNumber:string,
+    timeSlots:timeSlot[]
 }

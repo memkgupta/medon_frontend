@@ -8,6 +8,7 @@ import {toast,ToastContainer} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import { BASE_URL } from "@/constants";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,10 +41,14 @@ export default function RootLayout({
     {
         !loading?
         (
-            <AuthProvider value={{user:user,authStatus:authStatus,setAuthStatus:setAuthStatus,setUser:setUser}}>
+        
+   <AuthProvider value={{user:user,authStatus:authStatus,setAuthStatus:setAuthStatus,setUser:setUser}}>
             <Navbar/>
        {children}
+       <Footer/>
     </AuthProvider>
+       
+         
         ):"Loading"
     }
     </>
