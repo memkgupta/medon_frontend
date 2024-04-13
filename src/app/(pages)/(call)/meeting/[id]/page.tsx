@@ -43,7 +43,7 @@ const [loading,setLoading] = useState(true);
 
   useEffect(()=>{
 if(call){
-   const unsubscribe= call.on('call.ended',(event:StreamVideoEvent)=>{
+   const unsubscribe= call.on('call.session_ended',(event:StreamVideoEvent)=>{
 if(event.type==='call.ended'){
      call.endCall().then(()=>{
         axios.put(`${BASE_URL}/booking/end/${params.id}`,{},{headers:{Authorization:`Bearer ${cookies.token}`}}).then((res)=>{
