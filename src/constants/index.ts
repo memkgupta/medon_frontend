@@ -1,4 +1,4 @@
-export const BASE_URL = `https://medon-backend.onrender.com/`;
+export const BASE_URL = `https://medon-backend.onrender.com/api/v1`;
 export  const specialities = [ "General Physician",
 "Internal Medicine",
 "Urology",
