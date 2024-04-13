@@ -7,8 +7,9 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="p-24">
-     
+    <main className="px-24 py-4">
+     <p className="text-center text-7xl font-bold">Medon</p>
+     <p className="text-center text-2xl italic text-gray-600">Empowering Health , Enriching lives</p>
       <div className="mt-4 p-4 flex justify-center gap-5">
       {quickLinks.map((item,index)=>(
         <QuickCard title={item.title} imageUrl={`./${item.imageUrl}`} link={item.link}/>
