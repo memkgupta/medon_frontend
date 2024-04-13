@@ -56,12 +56,12 @@ const [imgUrl,setImgUrl] = useState<string|ArrayBuffer|null>('');
   };
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    index: number,
+    index: number|null,
     key: any
   ) => {
     const { value } = e.target;
     const updatedData: any = { ...formData };
-    if (key === "qualifications" || key === "timeSlots") {
+    if ((key === "qualifications" || key === "timeSlots") && index!=null) {
       updatedData[key][index][e.target.name] = value;
     } else if (key === "contactInfo") {
       updatedData[key][e.target.name] = value;
@@ -312,7 +312,7 @@ const [imgUrl,setImgUrl] = useState<string|ArrayBuffer|null>('');
         </div>
         {/* file */}
         <div className="mb-4">
-            <img src={imgUrl}></img>
+            <img src={imgUrl?.toString()}></img>
             <input onChange={handleImageChange} type="file" accept="image/*" className="w-20 rounded-md"></input>
         </div>
       </form>
