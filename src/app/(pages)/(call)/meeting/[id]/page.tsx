@@ -1,6 +1,6 @@
 "use client"
 import CallUi from '@/components/CallUi';
-import { Call, StreamCall, useStreamVideoClient } from '@stream-io/video-react-sdk'
+import { Call, StreamCall, StreamCallEvent, StreamVideoEvent, useStreamVideoClient } from '@stream-io/video-react-sdk'
 import React, { useEffect, useState } from 'react'
 import '@stream-io/video-react-sdk/dist/css/styles.css';
 import axios from 'axios';
@@ -39,6 +39,21 @@ const [loading,setLoading] = useState(true);
     }
    
   },[authStatus])
+
+  useEffect(()=>{
+if(call){
+    call.on('call.ended',(event:StreamVideoEvent)=>{
+if(event.type==='call.ended'){
+    axios.put(`${BASE_URL}/booking/end/${params.id}`,{},{headers:{Authorization:`Bearer ${cookies.token}`}}).then((res)=>{
+router.replace(`/meeting/end?id=${params.id}`)
+    })
+    .catch((error:any)=>{
+        toast.error(error.message);
+    })
+}
+    })
+}
+  },[call])
 
   return (
 <>
