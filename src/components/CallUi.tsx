@@ -16,7 +16,7 @@ const CallUi = () => {
   {
 (callingState!== CallingState.JOINED) ? 
 (
-    <div>Loading ...</div>
+    <div>Loading Call ...</div>
 )
 :
 (
