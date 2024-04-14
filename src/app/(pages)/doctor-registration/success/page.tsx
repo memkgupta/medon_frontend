@@ -22,7 +22,7 @@ if(id&&cookies?.token){
   .catch((err:any)=>{
     if(err.response){
       toast.error(err.response.data);
-      router.replace("/home");
+      router.replace("/");
     }
   })
   .finally(()=>{

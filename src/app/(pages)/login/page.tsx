@@ -25,7 +25,7 @@ const login = () => {
             
                 setAuthStatus(true);
                 setCookie('token',res.data.token,{expires:new Date(Date.now()+864000000)});
-                router.replace("/home")
+                router.replace("/")
             }
         } catch (error:any) {
            if(error.response){
@@ -61,7 +61,7 @@ const login = () => {
 
     useEffect(()=>{
       if(authStatus){
-router.replace("/home");
+router.replace("/");
       }
     },[authStatus])
   return (
