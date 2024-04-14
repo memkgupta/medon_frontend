@@ -72,7 +72,7 @@ if(event.type==='call.ended'){
 (
 <>
 {call!=undefined &&  <StreamCall call={call}>
-   <CallUi></CallUi>
+   <CallUi id={params.id}></CallUi>
 </StreamCall>
 }
 </>
